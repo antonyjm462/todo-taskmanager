@@ -1,0 +1,38 @@
+.mat-list-icon {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.App-head {
+    font-size: 3rem;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    text-align: center;
+    color: #B5B5C2;
+}
+
+.list {
+    -webkit-box-shadow: 6px -5px 17px 1px rgba(66, 62, 66, 0.15);
+    -moz-box-shadow: 6px -5px 17px 1px rgba(66, 62, 66, 0.15);
+    box-shadow: 6px -5px 17px 1px rgba(66, 62, 66, 0.15);
+}
+.mat-line{
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
+}
+.fa-thumbtack{
+    font-size: 1.5rem;
+    color: #E3E3E7;
+}
+.expansion{
+    margin-left: -10px;
+    margin-right: -10px;
+}
+#stepper{
+    margin-left: -44px;
+}
+.content{
+    margin-left: -39px;
+}
+.priority{
+    margin-top: 20px;
+}

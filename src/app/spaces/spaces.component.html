@@ -1,0 +1,291 @@
+<div class="container-fuild App">
+        <p class="App-head"> Spaces </p>
+    </div>
+    
+    <mat-progress-bar mode="indeterminate" *ngIf="ProjectList == null"></mat-progress-bar> 
+    <mat-accordion>
+        <div *ngFor="let project of ProjectList">
+            <mat-expansion-panel class="project">
+                <mat-expansion-panel-header class="project-header">
+                    <mat-panel-title class="project-title">
+                        {{project.data.name}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        {{project.data.description}}
+                    </mat-panel-description>
+                    <button class="normal-menu" mat-icon-button stop-parent [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button class="normal-menu" mat-menu-item (click)="onDelProject(project.id)">
+                            <mat-icon>delete</mat-icon>
+                            <span>Delete</span>
+                        </button>
+                        <button class="normal-menu" mat-menu-item (click)="EditProject(project)">
+                            <mat-icon>edit</mat-icon>
+                            <span>Edit</span>
+                        </button>
+                    </mat-menu>
+                </mat-expansion-panel-header>
+                <button mat-button color="primary" (click)="openList(project.id)" class="normal-menu"> <i class="fas fa-plus icon-small"></i></button>
+                <!-- <mat-card (click)="openList(project.id)" class="add-card"> Add New List </mat-card> -->
+                <mat-accordion>
+                    <div *ngFor="let list of List">
+                        <div *ngIf="project.id == list.data.pid">
+                            <mat-expansion-panel class="project">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title class="project-title">
+                                        {{list.data.lname}}
+                                    </mat-panel-title>
+                                    <button class="normal-menu" mat-icon-button stop-parent [matMenuTriggerFor]="menu"
+                                        aria-label="Example icon-button with a menu">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </button>
+                                    <mat-menu #menu="matMenu">
+                                        <button class="normal-menu" mat-menu-item (click)="onDelList(list.id)">
+                                            <mat-icon>delete</mat-icon>
+                                            <span>Delete</span>
+                                        </button>
+                                        <button class="normal-menu" mat-menu-item (click)="EditList(list)">
+                                            <mat-icon>edit</mat-icon>
+                                            <span>Edit</span>
+                                        </button>
+                                    </mat-menu>
+                                </mat-expansion-panel-header>
+                                <mat-list role="list">
+                                    <div *ngFor="let task of Tasks">
+                                        <div *ngIf="list.id == task.data.lid">
+                                            <mat-list-item *ngIf="list.id == task.data.lid" role="listitem"
+                                                (click)="openDescription(task)">
+                                                <div class="row">
+                                                    <div class="col-9 task-name">
+                                                        {{task.data.tname}}
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <button class="task-menu" mat-icon-button stop-parent [matMenuTriggerFor]="menu"
+                                                            aria-label="Example icon-button with a menu">
+                                                            <mat-icon>more_vert</mat-icon>
+                                                        </button>
+                                                        <mat-menu #menu="matMenu">
+                                                            <button class="normal-menu" mat-menu-item (click)="onDelTask(task.id)">
+                                                                <mat-icon>delete</mat-icon>
+                                                                <span>Delete</span>
+                                                            </button>
+                                                            <button class="normal-menu" mat-menu-item (click)="EditTask(task)">
+                                                                <mat-icon>edit</mat-icon>
+                                                                <span>Edit</span>
+                                                            </button>
+                                                        </mat-menu>
+                                                    </div>
+                                                </div>
+                                            </mat-list-item>
+                                        </div>
+                                    </div>
+                                </mat-list>
+                                <div class="row task-button justify-content-center">
+                                    <button mat-flat-button color="primary" (click)="opentask(list.id)">
+                                        <i class="fas fa-plus icon-small"></i>
+                                    </button>
+                                </div>
+    
+                            </mat-expansion-panel>
+                        </div>
+                    </div>
+                </mat-accordion>
+            </mat-expansion-panel>
+        </div>
+    </mat-accordion>
+    
+    <div class="float">
+        <button mat-fab color="primary" (click)="openDialog()"> <i class="fas fa-plus icon-med"></i></button>
+    </div>
+    
+    
+    <ng-template #spaceTemplate let-data>
+        <h2 class="lead" style="text-align: center">Add New Space</h2>
+        <form class="form" [formGroup]="spaceForm" (ngSubmit)="newSpace()">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Description" formControlName="description">
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="dialogRef.close();" type="submit"> Create
+            </button>
+            <button mat-raised-button color="warn" (click)="dialogRef.close();" style="margin-left: 2rem;">
+                Cancel </button>
+        </form>
+    </ng-template>
+    
+    
+    <ng-template #listTemplate let-data>
+        <div class="row">
+                <h2 class="lead" style="text-align: center"> New List </h2>
+            <div class="col-10">
+                <input [(ngModel)]="lname" matInput placeholder="New List" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="col-2">
+                <button mat-mini-fab color="primary" (click)="newlist();ListRef.close()">
+                    <i class="far fa-check-circle icon-small"></i>
+                </button>
+            </div>
+        </div>
+    </ng-template>
+    
+    <ng-template #taskTemplate let-data>
+        <div class="row">
+                <h2 class="lead" style="text-align: center"> New Task </h2>
+            <div class="col-10">
+                <input [(ngModel)]="tname" matInput placeholder="New Task" [ngModelOptions]="{standalone: true}">
+            </div>
+            <div class="col-2">
+                <button mat-mini-fab color="primary" (click)="newtask();taskRef.close()">
+                    <i class="far fa-check-circle icon-small"></i>
+                </button>
+            </div>
+        </div>
+    </ng-template>
+   
+    
+    <ng-template #spaceEditTemplate let-data>
+            <h2 class="lead" style="text-align: center">Edit Space</h2>
+            <form class="form" [formGroup]="spaceForm" (ngSubmit)="updatespace()">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Name" formControlName="name">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Description" formControlName="description">
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="dialogEditRef.close();" type="submit"> Update
+                </button>
+                <!-- <button mat-raised-button color="warn" (click)="dialogEditRef.close();" style="margin-left: 2rem;">
+                    Cancel </button> -->
+            </form>
+        </ng-template>
+        
+        
+        <ng-template #listEditTemplate let-data>
+            <div class="row">
+                    <h2 class="lead" style="text-align: center"> Edit List </h2>
+                <div class="col-10">
+                    <input [(ngModel)]="lname" matInput placeholder="Edit List" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col-2">
+                    <button mat-mini-fab color="primary" (click)="updatelist();ListEditRef.close()">
+                        <i class="far fa-check-circle icon-small"></i>
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+        
+        <ng-template #taskEditTemplate let-data>
+            <div class="row">
+                    <h2 class="lead" style="text-align: center"> Edit Task </h2>
+                <div class="col-10">
+                    <input [(ngModel)]="tname" matInput placeholder="Edit Task" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="col-2">
+                    <button mat-mini-fab color="primary" (click)="updatetask();taskEditRef.close()">
+                        <i class="far fa-check-circle icon-small"></i>
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <ng-template #descriptionTemplate let-data>
+        <div class="row">
+            <div class="col-6">
+                <mat-vertical-stepper #stepper id="stepper"  (selectionChange)="selectionChange(stepper)">
+                    <mat-step label="New" class="step-info">
+                        <div></div>
+                    </mat-step>
+                    <mat-step label="Assigned" class="step-info">
+                        <div></div>
+                    </mat-step>
+                    <mat-step label="InProgress" class="step-info">
+                        <div></div>
+                    </mat-step>
+                    <mat-step label="Resolved" class="step-info">
+                        <div></div>
+                    </mat-step>
+                    <mat-step label="Closed" class="step-info">
+                        <div></div>
+                    </mat-step> 
+                </mat-vertical-stepper>
+            </div>
+            <div class="col-6">
+                <div class="content">
+                    <form [formGroup]="task" (ngSubmit)="onSubmit()">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Description</mat-label>
+                            <input matInput [(ngModel)]="new_task.data.description" placeholder="Description about project" formControlName="description" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Comments</mat-label>
+                            <input matInput [(ngModel)]="new_task.data.comments" placeholder="comments" formControlName="comments" required>
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" type="submit" class="button">
+                            Submit
+                        </button>
+                        <mat-form-field appearance="fill" class="priority">
+                                <mat-label>Priority</mat-label>
+                                <mat-select [(value)]="priority_id">
+                                  <mat-option *ngFor="let priority of prioritylist" [value]="priority.priority_id" (click)="Updatetask()">
+                                    {{priority.priority}}
+                                  </mat-option>
+                                </mat-select>
+                            
+                            <!-- <input matInput placeholder="Enter no priority" [(ngModel)]="priority"
+                                [ngModelOptions]="{standalone: true}" "> -->
+                            <i class="fas fa-sort-numeric-up" matSuffix></i>
+                        </mat-form-field>
+                        <mat-form-field class="date">
+                            <input  [(ngModel)]="new_task.data.date"  matInput [matDatepicker]="picker" placeholder="Choose a date"
+                                (dateInput)="addEvent('input', $event)" [(ngModel)]="date"
+                                [ngModelOptions]="{standalone: true}" (keydown)="onKeydown($event)">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                                <mat-label>Assigned</mat-label>
+                                <mat-select [(value)]="uid">
+                                  <mat-option *ngFor="let user of userList" [value]="user.id" (click)="Updatetask()">
+                                    {{user.name}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ng-template>

@@ -1,0 +1,50 @@
+<div class="container-fuild App">
+    <p class="App-head" > DashBoard </p>
+</div>
+
+<mat-progress-bar mode="indeterminate" *ngIf="taskList == null"></mat-progress-bar>
+<br>
+<div class="number-card row justify-content-center">
+    <div class="col-8" style="color: #61C938">
+        <h3 class="head" >Closed Today</h3>
+        <h1 class="number">{{closed}}</h1>
+    </div>
+</div>
+<div class="number-card row justify-content-center">
+    <div class="col-8" style="color: #FEBE34">
+        <h3 class="head">Assigned Today</h3>
+        <h1 class="number">{{assgined}}</h1>
+    </div>
+</div>
+<div class="number-card row justify-content-center">
+    <div class="col-8" style="color: #51CEBD">
+        <h3 class="head">Due Today</h3>
+        <h1 class="number">{{duetask}}</h1>
+    </div>
+</div>
+<div class="number-card row justify-content-center">
+    <div class="col-8" style="color: #198AF5">
+        <h3 class="head">Total Tasks</h3>
+        <h1 class="number">{{totaltask}}</h1>
+    </div>
+</div>
+
+<!-- <div class="member row">
+    <div class="col-3">
+        <img class="avatar" src="../../assets/user.png" />
+    </div>
+    <div class="col-9">
+        <div class="info">
+            <h2 class="name"> Name </h2>
+            <p class="status"> status </p>
+            <div class="comment"> comment </div>
+        </div>
+    </div> -->
+
+
+
+    <!-- <div *ngFor="let task of taskList">
+        <div *ngIf="task.data.uid == user.id">
+                {{task.data.tname}}
+        </div>
+    </div> -->

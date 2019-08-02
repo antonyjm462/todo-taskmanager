@@ -1,0 +1,116 @@
+.project-header{
+    height: 55px;
+}
+
+.form{
+    margin-left: 26px;
+}
+.project {
+    /* padding: 8px; */
+    text-align: center;
+    background-color: #F5F5FA;
+    margin-top: 24px;
+}
+
+.project-title {
+    font-size: 18px;
+    text-transform: capitalize;
+    margin-top: 7px;
+    margin-left: 3px;
+}
+
+.add-card {
+    margin-bottom: 10px;
+}
+
+.task-name {
+    margin-left: -23px;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+.task-menu {
+    right: -135px;
+    bottom: 12px;
+    background-color: #FFFFFF;
+    outline: none;
+}
+.normal-menu{
+    outline: none;
+}
+.button {
+    right: -122px;
+}
+
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.icon-med {
+    font-size: 1.5rem;
+}
+
+.icon-small {
+    font-size: 1rem;
+}
+
+.mat-list-icon {
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.task-button {
+    margin-top: 10px;
+    text-align: center;
+    justify-content: center;
+}
+
+.App-head {
+    font-size: 3rem;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    text-align: center;
+    color: #B5B5C2;
+}
+
+.list {
+    -webkit-box-shadow: 6px -5px 17px 1px rgba(66, 62, 66, 0.15);
+    -moz-box-shadow: 6px -5px 17px 1px rgba(66, 62, 66, 0.15);
+    box-shadow: 6px -5px 17px 1px rgba(66, 62, 66, 0.15);
+}
+
+.mat-line {
+    font-size: 3rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.fa-thumbtack {
+    font-size: 1.5rem;
+    color: #E3E3E7;
+}
+
+.expansion {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+#stepper {
+    margin-left: -30px;
+}
+
+.content {
+    margin-left: -39px;
+}
+
+.priority {
+    margin-top: 20px;
+    left: -15px;
+}
+.date{
+    left: -7px;
+}

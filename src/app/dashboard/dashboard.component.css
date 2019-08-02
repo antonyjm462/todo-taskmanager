@@ -1,0 +1,57 @@
+.App-head {
+    font-size: 3rem;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px;
+    text-align: center;
+    color: #B5B5C2;
+    width: 100%;
+}
+
+.number-card {
+    border-radius: 13px;
+    /* background-color: #FFF4EE; */
+    width: 100%;
+    margin-left: -2px;
+    border-top-right-radius: 25px;
+    padding: 8px;
+    margin-bottom: 11px;
+    -webkit-box-shadow: 6px -5px 17px 1px rgba(66, 62, 66, 0.15);
+    -moz-box-shadow: 6px -5px 17px 1px rgba(66, 62, 66, 0.15);
+    box-shadow: 6px -5px 17px 1px rgba(66, 62, 66, 0.15);
+}
+
+.head {
+    font-family: 'Lato', sans-serif;
+    font-size: 22px;
+}
+
+.number {
+    font-size: 35px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.member {
+    margin: 8px;
+    margin-top: 33px;
+}
+
+.avatar {
+    padding: 10px;
+    height: 113px;
+}
+
+.info {
+    margin-left: 30px;
+}
+
+.name {
+    font-family: 'Lato', sans-serif;
+}
+
+.status {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.comment {
+    font-family: 'Poppins', sans-serif;
+}

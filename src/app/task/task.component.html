@@ -1,0 +1,102 @@
+<div class="container-fuild App">
+    <p class="App-head">Tasks</p>
+</div>
+
+<mat-list class="list">
+    <!-- <mat-list-item *ngFor="let folder of folders"> -->
+    <mat-list-item (click)="openBottomSheet()">
+        <i class="fas fa-thumbtack"></i>
+        <h3 mat-line class="mat-line">Task 1</h3>
+        <p mat-line> Date </p>
+    </mat-list-item>
+
+</mat-list>
+
+    <!-- <mat-vertical-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Enter your address</ng-template>
+                <mat-form-field>
+                    <input matInput placeholder="Address" formControlName="secondCtrl" required>
+                </mat-form-field>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            Details taken.
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-vertical-stepper>
+ -->
+
+
+    <ng-template #modalTemplate let-data>
+
+        <mat-accordion>
+            <mat-expansion-panel class="expansion">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{task}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="row">
+                    <div class="col-5">
+                        <mat-vertical-stepper #stepper id="stepper">
+                            <mat-step label="New" class="step-info">
+                                <div></div>
+                            </mat-step>
+                            <mat-step label="Assigned" class="step-info">
+                                <div></div>
+                            </mat-step>
+                            <mat-step label="InProgress" class="step-info">
+                                <div></div>
+                            </mat-step>
+                            <mat-step label="Resolved" class="step-info">
+                                <div></div>
+                            </mat-step>
+                            <mat-step label="Closed" class="step-info">
+                                <div></div>
+                            </mat-step>
+                        </mat-vertical-stepper>
+                    </div>
+                    <div class="col-7">
+                        <div class="content">
+                            <form [formGroup]="firstFormGroup">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Description</mat-label>
+                                    <input matInput placeholder="Description about project"
+                                        formControlName="description" required>
+                                </mat-form-field>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Comments</mat-label>
+                                    <input matInput placeholder="comments" formControlName="comments" required>
+                                </mat-form-field>
+                                <button mat-raised-button color="primary" type="submit"> Submit </button>
+                                <mat-form-field appearance="fill" class="priority">
+                                    <mat-label>Priority</mat-label>
+                                    <input matInput placeholder="Enter no priority">
+                                    <i class="fas fa-sort-numeric-up" matSuffix></i>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateInput)="addEvent('input', $event)">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </ng-template>
